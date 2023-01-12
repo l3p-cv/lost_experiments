@@ -92,7 +92,7 @@ class LostScript(script.Script):
                     dict_bbox = {'anno_data': [],
                     'anno_style': [],
                     'anno_format': [],
-                    'anno_class': [],
+                    'anno_lbl': [],
                     'anno_dtype': [],
                     'img_path': [],
                     'anno_confidence': []}
@@ -110,7 +110,7 @@ class LostScript(script.Script):
                         self.outp.request_annos(filename,
                                             annos = df_bbox_lost.anno_data.values.tolist(), 
                                             anno_types = df_bbox_lost.anno_dtype.values.tolist(),
-                                            anno_labels= df_bbox_lost.anno_class.values.tolist()
+                                            anno_labels= df_bbox_lost.anno_lbl.values.tolist()
                                                 )
                         
                     # only export for experiments

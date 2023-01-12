@@ -242,7 +242,7 @@ class detection:
             :param df_bbox_lost: (anno_data,
                                 anno_style, 
                                 anno_format,
-                                anno_class,
+                                anno_lbl,
                                 anno_dtype,
                                 img_path)
         '''
@@ -285,7 +285,7 @@ class detection:
         dict_bbox = {'anno_data': [],
                     'anno_style': [],
                     'anno_format': [],
-                    'anno_class': [],
+                    'anno_lbl': [],
                     'anno_dtype': [],
                     'img_path': [],
                     'anno_confidence': []}
@@ -294,7 +294,7 @@ class detection:
             dict_bbox['anno_data'].append(bboxes[:4]) 
             dict_bbox['anno_style'].append('x1y1x2y2')
             dict_bbox['anno_format'].append('abs') 
-            dict_bbox['anno_class'].append(dict_class_names[bboxes[5]])
+            dict_bbox['anno_lbl'].append(dict_class_names[bboxes[5]])
             dict_bbox['anno_dtype'].append('bbox')
             dict_bbox['img_path'].append(filename)
             dict_bbox['anno_confidence'].append(bboxes[4])     
