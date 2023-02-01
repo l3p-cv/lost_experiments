@@ -89,33 +89,43 @@ class LostScript(script.Script):
                     lbl_path = self.get_path(f'labels_loop_{loop_itr - 1}.json', context='pipe')
                     
                     # for experiments
-                    dict_bbox = {'anno_data': [],
-                    'anno_style': [],
-                    'anno_format': [],
-                    'anno_lbl': [],
-                    'anno_dtype': [],
-                    'img_path': [],
-                    'anno_confidence': []}
-                    
-                    df_concat = pd.DataFrame(dict_bbox)   
-                    
+        
+                    df_list = []
                     for filename in self.manage_blacklist(filenames):
-                        
                         df_bbox_lost = triton_client.predict(filename, 
                                                             lbl_path, 
                                                             fs_pipe)
                         
-                        df_concat = pd.concat([df_bbox_lost, df_concat])
+                        if df_bbox_lost.shape[0] > 0:
+                            for index, row in df_bbox_lost.iterrows():
+                                df_list.append({'anno_data': row['anno_data'],
+                                'anno_style': row['anno_style'],
+                                'anno_format': row['anno_format'],
+                                'anno_lbl': row['anno_lbl'],
+                                'anno_dtype': row['anno_dtype'],
+                                'img_path': row['img_path'],
+                                'anno_confidence': row['anno_confidence']})
+                        else:
+                             df_list.append({'anno_data': None,
+                                'anno_style': None,
+                                'anno_format': None,
+                                'anno_lbl': None,
+                                'anno_dtype': None,
+                                'img_path': filename,
+                                'anno_confidence': None})
                         
+                        
+                        
+        
                         self.outp.request_annos(filename,
                                             annos = df_bbox_lost.anno_data.values.tolist(), 
                                             anno_types = df_bbox_lost.anno_dtype.values.tolist(),
                                             anno_labels= df_bbox_lost.anno_lbl.values.tolist()
                                                 )
-                        
+                    df_concat = pd.DataFrame(df_list)
                     # only export for experiments
                     ds = lds.LOSTDataset(df_concat)
-                    ds.remove_empty(inplace=True)
+                    # ds.remove_empty(inplace=True)
                     anno_path_model = self.get_path(f'Model_Annotation_{loop_itr}.parquet', context='pipe')
                     ds.to_parquet(anno_path_model)
                     
