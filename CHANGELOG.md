@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### add
 * added image_list.txt to download experiment images from open image
+* added label.csv for LOST labels
   
 ## [0.2.0] - 2023-02-01
 

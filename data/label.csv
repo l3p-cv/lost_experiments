@@ -1,0 +1,7 @@
+,idx,name,abbreviation,description,timestamp,external_id,is_deleted,parent_leaf_id,is_root,group_id,color
+0,122,open image,,5 classes of open image,,,,,True,11,
+1,123,Fox,,,,,,122,False,11,
+2,124,Airplane,,,,,,122,False,11,
+3,125,Bus,,,,,,122,False,11,
+4,126,Bicycle,,,,,,122,False,11,
+5,127,Person,,,,,,122,False,11,
