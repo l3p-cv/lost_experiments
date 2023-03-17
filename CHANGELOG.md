@@ -9,7 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 * New stuff here
 
-## [0.2.0] - 2023-002-01
+## [0.2.1] - 2023-03-17
+
+### add
+* added image_list.txt to download experiment images from open image
+  
+## [0.2.0] - 2023-02-01
 
 ### fixed
 * fixed export model predictions
