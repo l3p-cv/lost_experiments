@@ -269,7 +269,7 @@ class detection:
         bboxes_tr = self.postprocess_boxes(pred_bbox_tr, 
                                             original_image, 
                                             self.input_size, 
-                                            score_threshold=0.7)
+                                            score_threshold=0.5)
         
         bboxes_tr = self.nms(bboxes_tr, 
                             iou_threshold=0.45, 
